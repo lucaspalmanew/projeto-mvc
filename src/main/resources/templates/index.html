@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+layout:decorate="~{layout.html}"
+>
+<meta charset="UTF-8">
+<div layout:fragment="content">
+<div class="card-group">
+  <div class="card">
+    <img class="card-img-top" th:src="@{img/bolocenoura.jpg}" alt="Imagem de capa do card">
+    <div class="card-body">
+      <h5 class="card-title">Bolo de Cenoura</h5>
+      <p class="card-text">Deliocioso bolo de cenoura com cobertura de chocolate.</p>
+      <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small>
+       <a th:href="@{/receita/}" class="btn btn-primary">Ver receitas</a></p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" th:src="@{img/limonada1.jpg}" alt="Imagem de capa do card">
+    <div class="card-body">
+      <h5 class="card-title">Limonada</h5>
+      <p class="card-text">Limonada fresquinha para os dias de calor.</p>
+      <p class="card-text"><small class="text-muted"></small>
+       <a th:href="@{/receita/}" class="btn btn-primary">Ver receitas</a></p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" th:src="@{img/macarrao.jpg}" alt="Imagem de capa do card">
+    <div class="card-body">
+      <h5 class="card-title">Macarronada</h5>
+      <p class="card-text">Incrível macarronada para comer aos domingos.</p>
+      <p class="card-text"><small class="text-muted"></small>
+       <a th:href="@{/receita/}" class="btn btn-primary">Ver receitas</a></p>
+    </div>
+  </div>
+</div>
+</div>
+<!-- <div class="card" style="width: 18rem;">
+  <img th:src="@{img/macarrao.jpg}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Macarrão</h5>
+    <p class="card-text">Aprenda a fazer macarrão.</p>
+    <a th:href="@{/receita/}" class="btn btn-primary">Ver receitas</a>
+  </div>-->
+
+</html>

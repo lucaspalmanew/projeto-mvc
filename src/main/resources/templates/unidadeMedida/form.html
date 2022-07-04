@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content" sec:authorize="hasAnyRole('ADMIN')">
+	<div class="alert alert-primary" th:if="${mensagem != null}" th:text="${mensagem}">
+	</div>
+	<div class="card">
+		<div class="card-header">
+			<p class="text-primary">Nova Unidade de Medida</p>
+		</div>
+		<div class="card-body">
+			<form method="POST" th:object="${unidadeMedida}" th:action="@{/unidadeMedida/novo}">
+				<input type="hidden" th:field="*{id}">
+				<div class="form-group mb-3">
+					<label for="nome">unidadeMedida:</label>
+					<input
+						class="form-control" type="text" th:field="*{nome}" required></input>
+					<div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Salvar
+					unidadeMedida</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+</html>

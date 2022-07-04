@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+	<div class="alert alert-primary" th:if="${#lists.isEmpty(lista)}">
+		Nenhuma receita cadastrada
+	</div>
+	<div class="alert alert-primary" th:if="${mensagem != null}" th:text="${mensagem}"></div>
+	 <!-- <div th:if="${not #lists.isEmpty(lista)}"> -->
+	
+	<div class="card mb-3">
+        <div class="card-header">
+            <p class="text-primary">Filtrar Receita</p>
+        </div>
+        <div class="card-body">
+            <form method="get">
+                <div class="form-group mb-3">
+                    <label for="nome">Nome:</label>
+                    <input class="form-control" type="text" name="nome" ></input>
+                </div>
+				<div class="form-group mb-3">
+                    <label for="nome">Ingrediente:</label>
+                    <input class="form-control" type="text" name="ingredientes" ></input>
+                </div>
+                <button type="submit" class="btn btn-primary btn-info">Pesquisar Receita</button>
+            </form>
+        </div>
+</div>
+
+		<!--  <form method="GET">
+			<div>
+				<label>Pesquisa por nome da receita:</label>
+				<input name="nome" th:value=${nome}>
+			</div>
+			<div>
+				<label>Pesquisa por nome de ingrediente:</label>
+				<input name="ingredientes" th:value=${ingredientes}>
+			</div>
+		<input class="btn btn-primary btn-sm" type="submit" value="Buscar">
+		</form>-->
+		<div th:if="${not #lists.isEmpty(lista)}">
+		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>modoPreparo</th>
+					<th>tempoPreparo</th>
+					<th>Ingredientes</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="receita : ${lista}">
+					<td th:text="${receita.id}"></td>
+					<td th:text="${receita.nome}"></td>
+					<td th:text="${receita.modoPreparo}"></td>
+					<td th:text="${receita.tempoPreparo} + ' minutos'"></td>
+					<td th:text="${receita.ingredientes}"></td>
+					
+					
+					<td><a class="btn btn-primary btn-sm" th:href="@{/receita/editar(id=${receita.id})}" sec:authorize="hasAnyRole('ADMIN')">Editar</a>
+					<a class="btn btn-primary btn-sm" th:href="@{/receita/excluir(id=${receita.id})}" onclick="return confirm('Você realmente deseja excluir esse receita?')" sec:authorize="hasAnyRole('ADMIN')">Excluir</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+</html>
